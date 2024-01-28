@@ -1,0 +1,11 @@
+.card-left-half{
+    max-width: 100%;
+}
+
+.card-img{
+    max-width: 100%;
+}
+
+.confirmation-icon-container .tooltip-hover{
+    right: 30px;
+}

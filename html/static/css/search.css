@@ -1,0 +1,85 @@
+.card{
+    display: inline-block;
+    padding: 0 0 5px 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.card:not(:last-child){
+    padding-right: 5px;
+}
+
+.card-img{
+    width: 300px;
+}
+
+#search-results{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.number-of-results{
+    padding-bottom: 5px;
+    flex: 0 0 100%;
+}
+
+.number-of-results-text{
+    width: max-content;
+    margin: 0 auto;
+}
+
+.number-of-results b{
+    font-weight: bold;
+}
+
+.no-results-text{
+    font-weight: bold;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.no-search-results{
+    width: max-content;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.pagination{
+    padding-bottom: 20px;
+    line-height: 2.5;
+    flex: 0 0 100%;
+}
+
+#other-pages-bottom{
+    padding-top: 10px;
+}
+
+.pagination .pagination-content{
+    width: max-content;
+    display: flex;
+    margin: 0 auto;
+}
+
+.pagination .pagination-page{
+    padding: 0 7px;
+}
+
+.pagination .current-page{
+    background: #dc0800;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a, .pagination-content > div{
+    width: 40px;
+    text-align: center;
+    background-color: #ededed;
+}
+
+.pagination a:hover:not(.active){
+    background-color: #ddd;
+    border-radius: 5px;
+}

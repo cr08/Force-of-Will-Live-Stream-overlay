@@ -1,0 +1,55 @@
+.deck-view-container {
+    padding: 0 10px;
+}
+
+.card-preview.show>img {
+    height: 50%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: unset;
+}
+
+.card-preview .view-in-another-tab {
+    top: calc(80%);
+}
+
+.deck-zone-card-container {
+    justify-content: center;
+}
+
+.deck-zone-title {
+    text-align: center;
+}
+
+.deck-title,
+.deck-creator-name {
+    display: block;
+    text-align: center;
+}
+
+.attribute-wrapper-disabled {
+    display: none;
+}
+
+button.close.modal-close-btn {
+    margin-top: -15px !important;
+}
+
+.samplehand-card:first-child {
+    margin-top: 0;
+    position: relative;
+}
+
+.samplehand-card {
+    margin: -269px auto 0;
+    position: relative;
+}
+
+.test-hand-card-container {
+    margin-left: 5vw;
+}
+
+.last-edit, .disabled-edit{
+    text-align: center;
+}

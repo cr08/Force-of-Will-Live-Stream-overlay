@@ -1,0 +1,257 @@
+#basic-form, #advanced-form{
+    width: max-content;
+    margin: 0 auto;
+}
+
+#advanced-search{
+    display: none;
+}
+
+#search-toggles{
+    width: max-content;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.search-toggle{
+    display: inline-block;
+    cursor: pointer;
+}
+
+#basic-search-toggle{
+    margin-right: 50px;
+}
+
+.basic-showing #basic-search-toggle{
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+.advanced-showing #advanced-search-toggle{
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+#advanced-form input[name="generic_text"]{
+    display: block;
+    width: 100%;
+}
+#advanced-search .generic-text-wrapper{
+    width: calc(100% - 50px);
+    display: inline-block;
+}
+
+#advanced-form #id_text_search_fields li{
+    display: block;
+}
+
+#advanced-form #id_text_search_fields{
+    padding-inline-start: 0;
+}
+
+#advanced-form .cost-img{
+    width: 35px;
+}
+
+input[type="checkbox"][name="text_search_fields"],
+input[type="checkbox"].fow-checkbox,
+input[type="checkbox"][name="text_exactness"],
+input[type="checkbox"][name="sort_by"],
+input[type="checkbox"][name="reverse_sort"],
+input[type="checkbox"][name="colour_match"],
+input[type="checkbox"][name="colour_combination"]{
+    position: static;
+    opacity: 1;
+}
+
+input[type="checkbox"].fow-checkbox {
+    -webkit-appearance: none;
+    background-color: #dc0800;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+
+.fow-checkbox:active, .fow-checkbox:checked:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.fow-checkbox:checked {
+    background-color: #dc0800;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+}
+
+.fow-checkbox:checked:after {
+    content: '\2714';
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: white;
+}
+
+#advanced-form label:not(:last-child){
+    margin-right: 30px;
+}
+
+.sets-select{
+    min-width: 500px;
+}
+
+input[type="checkbox"].fow-checkbox.hidden-checkbox{
+    display: none;
+}
+
+.selected-backgrounds{
+    border-radius: 25px;
+}
+
+input:checked + .selected-backgrounds{
+    outline: 3px solid black;
+}
+
+.select-colours input:not(:checked) + .selected-backgrounds{
+    opacity: 0.4;
+}
+
+.cost-select label, .divinity-select label{
+    width: 35px;
+    background-color: #d5d5d5;
+    padding: 5px 0px;
+}
+
+.cost-select .cost-value-wrapper, .divinity-select .divinity-value-wrapper{
+    margin: 0 auto;
+    width: max-content;
+    font-weight: bold;
+}
+
+.atk-def-stats{
+    padding-bottom: 20px;
+}
+
+.atk-def-stats div{
+    display: inline-block;
+}
+
+.atk-inputs, .def-inputs{
+    width: calc(50% - 1px);
+}
+
+.atk-comparator select, .def-comparator select{
+    height: 30px;
+}
+
+.atk-label, .def-label{
+    padding-right: 10px;
+}
+
+.atk-comparator, .def-comparator{
+    padding-right: 10px;
+}
+
+.divinity-select, .cost-select, .select-text-search-fields, .select-text-exactness, .atk-def-stats, .select-sort-by, .colour-combination{
+    border-bottom: 1px solid rgb(0 0 0 / 16%);
+    margin-bottom: 20px;
+}
+
+.field-title{
+    font-weight: bold;
+}
+
+.select-text-exactness{
+    padding-top: 10px;
+}
+
+.reverse-sort-input, .reverse-sort-label{
+    display: inline-block;
+}
+
+.referred-card{
+    width: max-content;
+}
+
+.form-submit-button{
+    display: inline-block;
+}
+
+#id_reverse_sort{
+    pointer-events: auto;
+}
+
+.help-tooltip{
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.help-tooltip .tooltip-icon{
+    cursor: pointer;
+}
+
+.tooltip-icon{
+    width: 20.75px;
+    opacity: 0.3;
+}
+
+.tooltip-popup{
+    display: none;
+    text-align: left;
+}
+
+.help-tooltip.show .tooltip-popup{
+    display: revert;
+}
+
+.help-tooltip.show .tooltip-popup{
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+}
+
+.tooltip-content{
+    max-width: 60%;
+    width: 600px;
+    margin: 220px auto 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+
+.tooltip-text{
+    display: block;
+}
+
+.tooltip-text > img{
+    height: 16px;
+    display: inline;
+}
+
+.tooltip-values{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tooltip-values > div{
+    flex: 0 0 50%;
+}
+
+/* ensure select-dropdowns appear behind card image popout when edit deck list and on adv search page  */
+input.select-dropdown.form-control{
+    z-index: auto;
+}
