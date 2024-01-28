@@ -28,24 +28,52 @@ const cardID_url = (url) => {
 };
 let cardID = cardID_url(url);
 
+// Moar debugging!
+var jsonArray = [url, cardID, cardimg, img, json];
+var jsonData = JSON.stringify(jsonArray);
+
+console.log(jsonData);
+
 // Adding Push JS code to page
 var script = document.createElement("script");
 
 script.innerHTML = "function pushToOBS() { \
         \
-        $.get('https://ferdonia.tv/cardoverlay/push.php?id=" + cardID + "', \
-        function(response) { \
-        document.getElementById('overlay-push-button').style.background = \"green\"; \
-        document.getElementById('overlay-push-button').textContent=\"Push [" + cardID + "] to OBS \u{2705}\"; \
-        document.getElementById('overlay-push-button-reset').removeAttribute(\"style\"); \
-        document.getElementById('overlay-push-button-reset').textContent=\"OBS Reset\"; \
+        var jsonArray = [url, cardID, cardimg, img, json]; \
+        var jsonData = JSON.stringify(jsonArray); \
         \
-        }); \
+        fetch(\"https://ferdonia.tv/fow-overlay/sse/push.php\", { \
+          method: \"POST\", \
+          headers: { \
+            \"Content-Type\": \"application/json\" \
+          }, \
+          body: jsonData \
+        }) \
+        .then( \
+          function(response) { \
+              if (response.status !== 200) { \
+              console.log('Looks like there was a problem. Status Code: ' + \
+                  response.status); \
+              return; \
+              } \
+              \
+              response.json().then(function(data) { \
+              console.log(data); \
+              document.getElementById('overlay-push-button').style.background = \"green\"; \
+              document.getElementById('overlay-push-button').textContent=\"Push [" + cardID + "] to OBS \u{2705}\"; \
+              document.getElementById('overlay-push-button-reset').removeAttribute(\"style\"); \
+              document.getElementById('overlay-push-button-reset').textContent=\"OBS Reset\"; \
+              }); \
+          } \
+          ) \
+          .catch(function(err) { \
+          console.log('Fetch Error :-S', err); \
+          }); \
         } \
          \
         function ResetOBS() { \
         \
-        $.get('https://ferdonia.tv/cardoverlay/push.php?id=XYZ-1234', \
+        $.get('https://ferdonia.tv/fow-overlay/sse/push.php?id=XYZ-1234', \
         function(response) { \
         document.getElementById('overlay-push-button-reset').style.background = \"green\"; \
         document.getElementById('overlay-push-button-reset').textContent=\"OBS Reset \u{2705}\"; \
