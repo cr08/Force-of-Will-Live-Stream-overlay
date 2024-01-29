@@ -28,26 +28,32 @@ const cardID_url = (url) => {
 };
 let cardID = cardID_url(url);
 
-// Moar debugging!
-var jsonArray = [url, cardID, cardimg, img, json];
-var jsonData = JSON.stringify(jsonArray);
+// Removing user decklist div since we won't need this
+const decklist = document.getElementById("card-decklists");
+decklist.remove();
 
-console.log(jsonData);
+// Getting card text data from page and converting to a JSON string
+var element = document.getElementsByClassName('card-right-half');
+var element = element[0];
+var html = element.innerHTML;
+var data = { html: html };
+var json = JSON.stringify(data);
 
 // Adding Push JS code to page
 var script = document.createElement("script");
+script.type = 'text/javascript';
 
-script.innerHTML = "function pushToOBS() { \
-        \
-        var jsonArray = [url, cardID, cardimg, img, json]; \
-        var jsonData = JSON.stringify(jsonArray); \
-        \
+script.textContent = "var jsonArray = [\""+ url + "\", \""+ cardID + "\", \"" + cardimg + "\", \"" + img + "\", " + json + "]; \
+                    var jsonData = JSON.stringify(jsonArray); \
+                    \
+                    console.log(jsonData); \
+        function pushToOBS() { \
         fetch(\"https://ferdonia.tv/fow-overlay/sse/push.php\", { \
           method: \"POST\", \
           headers: { \
             \"Content-Type\": \"application/json\" \
           }, \
-          body: jsonData \
+          body: jsonArray \
         }) \
         .then( \
           function(response) { \
@@ -84,17 +90,6 @@ script.innerHTML = "function pushToOBS() { \
         }";
 
 document.head.appendChild(script);
-
-// Removing user decklist div since we won't need this
-const decklist = document.getElementById("card-decklists");
-decklist.remove();
-
-// Getting card text data from page and converting to a JSON string
-var element = document.getElementsByClassName('card-right-half');
-var element = element[0];
-var html = element.innerHTML;
-var data = { html: html };
-var json = JSON.stringify(data);
 
 // Adding OBS Push/Reset buttons to page
 var parent = document.getElementById("advanced-search").parentNode;
