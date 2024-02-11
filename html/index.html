@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- saved from url=(0044)https://www.forceofwind.online/card/GRV-001/ -->
 <html lang="en" class="swup-enabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             
                 <meta name="description" content="Force of Will Database and Deck Builder">
@@ -25,28 +26,30 @@
 
 
                         if(typeof(EventSource) !== "undefined") {
-                            var source=new EventSource("https://ferdonia.tv/cardoverlay/sse.php");
+                            var source=new EventSource("https://ferdonia.tv/fow-overlay/sse/sse.php");
                             source.onmessage = function(event) {
                                 var msg = $.parseJSON(event.data);
+				console.log(msg);
+				console.log(msg[5]);
 
-                            if(msg.timestamp > pageTime) {
+                            if(msg[5] > pageTime) {
 
-                                if(msg.card == "XYZ-1234") {
+                                if(msg[1] == "XYZ-1234") {
 
                                     console.log("OBS_PUSH: Push data new. Pushing to card back/blank slate.");
-                                    swup.loadPage({url: "/card_overlay_start/"});
+                                    swup.loadPage({url: "./index.html"});
 
                                 } else {
 
                                     console.log("OBS_PUSH: Preloading new card page...");
-                                    document.getElementById('hidden_img').src = "/media/cards/" + msg.card + ".png";
+                                    document.getElementById('hidden_img').src = "./static/img/cards/" + msg[2];
                                     $(".cachedimage").on("load", function(){
                                         console.log("OBS_PUSH: New card image cached, loading new page...")
-                                        swup.loadPage({url: "/card_overlay/" + msg.card + "/"});
+                                        swup.loadPage({url: "./index2.php?card=" + msg[1]});
                                     });
 
                                 }
-                                pageTime = msg.timestamp;
+                                pageTime = msg[5];
                                 console.log("OBS_PUSH: pageTime updated");
 
                             } else {

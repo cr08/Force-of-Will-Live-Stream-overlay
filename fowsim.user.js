@@ -36,24 +36,27 @@ decklist.remove();
 var element = document.getElementsByClassName('card-right-half');
 var element = element[0];
 var html = element.innerHTML;
+var html_encode = btoa(html);
 var data = { html: html };
-var json = JSON.stringify(data);
+// var json = JSON.stringify(data);
+var json = data;
 
 // Adding Push JS code to page
 var script = document.createElement("script");
 script.type = 'text/javascript';
 
-script.textContent = "var jsonArray = [\""+ url + "\", \""+ cardID + "\", \"" + cardimg + "\", \"" + img + "\", " + json + "]; \
+script.textContent = "var jsonArray = [\""+ url + "\", \""+ cardID + "\", \"" + cardimg + "\", \"" + img + "\", \"" + html_encode + "\"]; \
                     var jsonData = JSON.stringify(jsonArray); \
                     \
                     console.log(jsonData); \
         function pushToOBS() { \
         fetch(\"https://ferdonia.tv/fow-overlay/sse/push.php\", { \
+          mode: \"no-cors\", \
           method: \"POST\", \
           headers: { \
             \"Content-Type\": \"application/json\" \
           }, \
-          body: jsonArray \
+          body: jsonData \
         }) \
         .then( \
           function(response) { \
@@ -99,11 +102,14 @@ reference.insertAdjacentHTML("beforebegin", html_button);
 
 
 // Debug logging to console
-console.log(url);
-console.log(cardID);
-console.log(cardimg);
-console.log(img);
-// console.log(json);
+// console.log(url);
+// console.log(cardID);
+// console.log(cardimg);
+// console.log(img);
+console.log(html);
+console.log(html_encode);
+console.log(data);
+console.log(json);
 
 // More code to be added in later...
 // fetch('https://reqbin.com/echo/post/json', {

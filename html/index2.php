@@ -25,28 +25,30 @@
 
 
                         if(typeof(EventSource) !== "undefined") {
-                            var source=new EventSource("https://ferdonia.tv/cardoverlay/sse.php");
+                            var source=new EventSource("https://ferdonia.tv/fow-overlay/sse/sse.php");
                             source.onmessage = function(event) {
                                 var msg = $.parseJSON(event.data);
+				console.log(msg);
+				console.log(msg[5]);
 
-                            if(msg.timestamp > pageTime) {
+                            if(msg[5] > pageTime) {
 
-                                if(msg.card == "XYZ-1234") {
+                                if(msg[1] == "XYZ-1234") {
 
                                     console.log("OBS_PUSH: Push data new. Pushing to card back/blank slate.");
-                                    swup.loadPage({url: "/card_overlay_start/"});
+                                    swup.loadPage({url: "./index.html"});
 
                                 } else {
 
                                     console.log("OBS_PUSH: Preloading new card page...");
-                                    document.getElementById('hidden_img').src = "/media/cards/" + msg.card + ".png";
+                                    document.getElementById('hidden_img').src = "./static/img/cards/" + msg[2];
                                     $(".cachedimage").on("load", function(){
                                         console.log("OBS_PUSH: New card image cached, loading new page...")
-                                        swup.loadPage({url: "/card_overlay/" + msg.card + "/"});
+                                        swup.loadPage({url: "./index2.php?card=" + msg[1]});
                                     });
 
                                 }
-                                pageTime = msg.timestamp;
+                                pageTime = msg[5];
                                 console.log("OBS_PUSH: pageTime updated");
 
                             } else {
@@ -76,42 +78,24 @@
         <body aria-busy="true">
             <img style="display:none" id="hidden_img" src="./static/img/fow_cardback.png" class="cachedimage">
             
+<?php
+
+$json = file_get_contents("./sse/data.json"	);
+$data = json_decode($json);
+$html = base64_decode($data[4]);
+?>
+
 <div class="card-container">
     <main id="swup" data-swup="0">
         <div id="swup-card-img card_img_overlay" class="card-left-half card transition-flip center" style="background-color:transparent">
-      <div class="front face" style="background-image:url('./static/img/fow_cardback.png')"></div>
+      <div class="front face" style="background-image:url('./static/img/cards/<?php echo $data[2] ?>')"></div>
       <div class="back face" style="background-image:url('./static/img/fow_cardback.png')"></div>
         </div>
     </main>
 
     <main id="swup" class="transition-fade" data-swup="1">
         <div id="swup-card-txt" class="card-right-half">
-            <div class="card-text-info">
-                <div class="card-text-info-title">
-                    Name:
-                </div>
-                <div class="card-text-info-text">
-                    DERP
-                </div>
-            </div>
-    
-                <div class="card-text-info ability-text">
-                    <div class="card-text-info-title">
-                        Text:
-                    </div>
-                        <div class="card-text-info-text">
-                        DERP
-                        </div>
-    
-                </div>
-    
-            <div class="card-text-info">
-                <div class="card-text-info-title">
-                    ID:
-                </div>
-                <div class="card-text-info-text">
-                    DRP-001
-                </div>
+<?php echo $html; ?>
             </div>
             
         </div>
